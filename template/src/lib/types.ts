@@ -25,7 +25,29 @@ export interface VoiceEntry {
   idea_status?: string | null;
 }
 
+
+export interface WordCloudItem {
+  text: string;
+  value: number; // frequency count
+  percentage?: number; // optional: percentage of total
+}
+
 export interface ProcessedResult {
   summary: string;
   tagFrequencies: Record<string, number>;
-} 
+  wordClouds: {
+    last7Days: WordCloudItem[];
+    last30Days: WordCloudItem[];
+    allTime: WordCloudItem[];
+  };
+  timeRanges: {
+    last7Days: { start: Date; end: Date; entryCount: number };
+    last30Days: { start: Date; end: Date; entryCount: number };
+    allTime: { start: Date; end: Date; entryCount: number };
+  };
+}
+
+// export interface ProcessedResult {
+//   summary: string;
+//   tagFrequencies: Record<string, number>;
+// } 
